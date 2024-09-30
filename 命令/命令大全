@@ -1,0 +1,377 @@
+1. 文件和目录操作命令
+1.1 ls（列出目录内容）
+用途：显示指定目录中的文件和子目录列表。
+示例：
+ls                # 列出当前目录的文件和文件夹
+ls -l             # 以长格式显示详细信息
+ls -a             # 显示所有文件，包括隐藏文件
+ls -lh            # 以人类可读的格式显示文件大小
+
+1.2 cd（切换目录）
+用途：更改当前工作目录。
+示例：
+cd /home/user/documents   # 切换到指定目录
+cd ..                      # 返回上一级目录
+cd ~                       # 切换到用户主目录
+cd                         # 直接切换到用户主目录
+
+1.3 pwd（显示当前目录）
+用途：显示当前工作目录的完整路径。
+示例：
+pwd
+# 输出示例: /home/user/documents
+
+1.4 mkdir（创建目录）
+用途：创建一个或多个新目录。
+示例：
+mkdir new_folder               # 创建单个目录
+mkdir -p parent/child/grandchild  # 创建多级目录
+
+1.5 rmdir（删除空目录）
+用途：删除空的目录。
+示例：
+rmdir empty_folder
+
+1.6 rm（删除文件或目录）
+用途：删除文件或目录。
+示例：
+rm file.txt                    # 删除文件
+rm -r folder/                  # 递归删除目录及其内容
+rm -f file.txt                 # 强制删除，不提示确认
+rm -rf folder/                 # 强制递归删除目录及其内容
+
+1.7 cp（复制文件或目录）
+用途：复制文件或目录。
+示例：
+cp source.txt destination.txt              # 复制文件
+cp -r source_folder/ destination_folder/   # 复制目录及其内容
+
+1.8 mv（移动或重命名文件或目录）
+用途：移动文件或目录，或重命名它们。
+示例：
+mv old_name.txt new_name.txt               # 重命名文件
+mv file.txt /path/to/destination/          # 移动文件到指定目录
+mv old_folder/ new_folder/                 # 重命名目录
+
+1.9 touch（创建空文件或修改时间戳）
+用途：创建一个空文件或更新现有文件的访问和修改时间。
+示例：
+touch newfile.txt               # 创建一个空文件
+touch existingfile.txt          # 更新文件的时间戳
+
+1.10 find（查找文件）
+用途：在指定目录中搜索符合条件的文件或目录。
+示例：
+find /home/user -name "*.txt"              # 查找所有 .txt 文件
+find . -type d -name "backup"              # 查找名为 backup 的目录
+find /var/log -size +100M                   # 查找大于100MB的文件
+
+2. 文件内容查看和操作命令
+2.1 cat（连接并显示文件内容）
+用途：显示文件内容，或将多个文件连接在一起输出。
+示例：
+cat file.txt                    # 显示文件内容
+cat file1.txt file2.txt > merged.txt  # 合并两个文件内容到新文件
+
+2.2 less / more（分页查看文件内容）
+用途：以分页方式查看长文件内容，支持向前和向后导航。
+示例：
+less largefile.log
+more largefile.log
+
+2.3 head（查看文件开头部分）
+用途：显示文件的前几行。
+示例：
+head file.txt                   # 默认显示前10行
+head -n 20 file.txt             # 显示前20行
+
+2.4 tail（查看文件结尾部分）
+用途：显示文件的最后几行。
+示例：
+tail file.txt                   # 默认显示最后10行
+tail -n 20 file.txt             # 显示最后20行
+tail -f logfile.log             # 实时监控文件新增内容
+
+2.5 grep（搜索文本内容）
+用途：在文件中搜索符合条件的文本行，并输出匹配的行。
+示例：
+grep "search_term" file.txt             # 搜索包含 "search_term" 的行
+grep -i "search_term" file.txt          # 忽略大小写
+grep -r "search_term" /path/to/dir      # 递归搜索目录中的文件
+grep -v "pattern" file.txt              # 输出不包含 "pattern" 的行
+
+2.6 sed（流编辑器，用于文本处理）
+用途：对文件内容进行查找、替换、插入、删除等操作。
+示例：
+sed 's/old/new/g' file.txt               # 将文件中的 "old" 替换为 "new"
+sed -i 's/old/new/g' file.txt            # 直接修改文件内容
+sed '/pattern/d' file.txt                # 删除匹配 "pattern" 的行
+
+2.7 awk（文本处理工具）
+用途：基于模式匹配和操作字段的数据提取和报告生成。
+示例：
+awk '{print $1}' file.txt                 # 打印每行的第一个字段
+awk '/pattern/ {print $2}' file.txt       # 匹配 "pattern" 并打印第二个字段
+awk -F: '{print $1}' /etc/passwd          # 使用 ":" 作为分隔符
+
+3. 权限和所有权管理命令
+3.1 chmod（修改文件权限）
+用途：更改文件或目录的访问权限。
+示例：
+chmod 755 script.sh                # 设置文件权限为 rwxr-xr-x
+chmod u+x script.sh                # 为文件所有者添加执行权限
+chmod -R 644 /path/to/dir          # 递归设置目录及其内容的权限
+
+3.2 chown（修改文件所有者）
+用途：更改文件或目录的所有者和所属组。
+示例：
+chown user:group file.txt           # 将文件的所有者更改为 user，组更改为 group
+chown -R user:group /path/to/dir    # 递归更改目录及其内容的所有者和组
+
+3.3 chgrp（修改文件所属组）
+用途：更改文件或目录的所属组。
+示例：
+chgrp group file.txt                # 将文件的组更改为 group
+chgrp -R group /path/to/dir         # 递归更改目录及其内容的组
+
+4. 系统信息和管理命令
+4.1 ps（查看进程信息）
+用途：显示当前运行的进程信息。
+示例：
+ps                                # 显示当前用户的进程
+ps aux                            # 显示所有用户的详细进程信息
+ps -ef                            # 显示所有进程的详细信息
+
+4.2 top / htop（实时查看系统进程）
+用途：动态显示系统中各进程的资源使用情况。
+示例：
+top
+htop    # 需要提前安装 htop
+
+4.3 df（查看磁盘空间使用情况）
+用途：显示文件系统的磁盘空间使用情况。
+示例：
+df -h                             # 以人类可读的格式显示
+df -T                             # 显示文件系统类型
+
+4.4 du（查看文件或目录磁盘使用情况）
+用途：估算文件或目录所占用的磁盘空间。
+示例：
+du -sh /path/to/dir               # 显示目录的总大小
+du -h --max-depth=1 /path/to/dir  # 显示一级子目录的大小
+
+4.5 free（查看内存使用情况）
+用途：显示系统内存的使用状态。
+示例：
+free -h
+
+4.6 uname（查看系统信息）
+用途：显示系统的名称、版本和其他相关信息。
+示例：
+uname -a                           # 显示所有系统信息
+uname -r                           # 显示内核版本
+
+4.7 who（查看当前登录用户）
+用途：显示当前登录系统的用户信息。
+示例：
+who
+
+4.8 sudo（以超级用户权限执行命令）
+用途：以超级用户或其他用户的身份执行命令。
+示例：
+sudo apt update                    # 以超级用户权限更新软件包列表
+sudo systemctl restart apache2     # 重启 Apache 服务
+
+5. 网络相关命令
+5.1 ping（测试网络连通性）
+用途：测试与目标主机的网络连接是否可达。
+示例：
+ping www.google.com
+ping -c 4 www.google.com           # 发送4个包后停止
+
+5.2 ifconfig / ip（查看和配置网络接口）
+用途：显示或配置网络接口信息。
+示例：
+ifconfig                           # 显示所有网络接口信息
+ip addr                            # 使用 ip 命令显示网络接口信息
+ip link set eth0 up                # 启动 eth0 网络接口
+ip link set eth0 down              # 关闭 eth0 网络接口
+
+5.3 netstat / ss（查看网络连接）
+用途：显示网络连接、路由表、接口统计等信息。
+示例：
+netstat -tuln                      # 显示所有监听的 TCP 和 UDP 端口
+ss -tuln                           # 使用 ss 命令显示监听端口
+
+5.4 curl / wget（下载文件）
+用途：从网络上下载文件或与服务器交互。
+示例：
+curl -O https://example.com/file.zip    # 下载文件并保存
+wget https://example.com/file.zip        # 使用 wget 下载文件
+
+5.5 ssh（远程登录）
+用途：通过 SSH 协议远程登录到另一台计算机。
+示例：
+ssh user@remote_host
+ssh -p 2222 user@remote_host            # 指定端口号
+
+6. 压缩与归档命令
+6.1 tar（打包和解包文件）
+用途：创建归档文件或解压归档文件。
+示例：
+tar -cvf archive.tar /path/to/dir      # 创建 tar 归档
+tar -xvf archive.tar                    # 解压 tar 归档
+tar -czvf archive.tar.gz /path/to/dir   # 创建 gzip 压缩的 tar 归档
+tar -xzvf archive.tar.gz                 # 解压 gzip 压缩的 tar 归档
+
+6.2 gzip / gunzip（压缩和解压缩文件）
+用途：压缩文件或解压缩 gzip 格式的文件。
+示例：
+gzip file.txt                           # 压缩文件，生成 file.txt.gz
+gunzip file.txt.gz                      # 解压缩文件
+
+6.3 zip / unzip（压缩和解压缩文件）
+用途：压缩文件为 zip 格式或解压缩 zip 文件。
+示例：
+zip archive.zip file1.txt file2.txt      # 创建 zip 压缩包
+unzip archive.zip                        # 解压缩 zip 文件
+
+7. 文本编辑器
+7.1 vim / nano / emacs（编辑文件）
+用途：在命令行中编辑文本文件。
+示例：
+vim file.txt        # 使用 Vim 编辑文件
+nano file.txt       # 使用 Nano 编辑文件
+emacs file.txt      # 使用 Emacs 编辑文件
+
+8. 其他常用命令
+8.1 echo（打印文本）
+用途：在终端显示一段文本或变量的值。
+示例：
+echo "Hello, World!"
+name="Alice"
+echo "My name is $name"
+
+8.2 export（设置环境变量）
+用途：设置或导出环境变量，使其在子 Shell 中可用。
+示例：
+export PATH="/usr/local/bin:$PATH"
+export MY_VAR="SomeValue"
+
+8.3 history（查看命令历史）
+用途：显示之前执行过的命令历史。
+示例：
+history
+history | grep "ssh"    # 查找包含 "ssh" 的历史命令
+
+8.4 alias（设置命令别名）
+用途：为命令创建简短的别名，方便使用。
+示例：
+alias ll='ls -alF'
+alias gs='git status'
+
+8.5 man（查看命令手册）
+用途：显示命令的使用手册，获取详细的帮助信息。
+示例：
+man ls
+man grep
+
+8.6 date（显示或设置系统日期和时间）
+用途：显示当前系统日期和时间，或设置系统时间。
+示例：
+date                                # 显示当前日期和时间
+date "+%Y-%m-%d %H:%M:%S"           # 按指定格式显示日期和时间
+sudo date -s "2024-04-27 10:00:00"  # 设置系统日期和时间（需要超级用户权限）
+
+8.7 kill（结束进程）
+用途：终止指定进程。
+示例：
+kill 1234                            # 终止 PID 为 1234 的进程
+kill -9 1234                         # 强制终止 PID 为 1234 的进程
+killall process_name                 # 终止所有名为 process_name 的进程
+
+9. 脚本和编程相关命令
+9.1 bash / sh（执行脚本）
+用途：运行 Shell 脚本。
+示例：
+bash script.sh
+sh script.sh
+
+9.2 expr（计算表达式）
+用途：执行算术运算和字符串操作。
+示例：
+expr 5 + 3                            # 输出 8
+expr length "hello"                   # 输出 5
+
+9.3 test（条件判断）
+用途：在脚本中进行条件判断。
+示例：
+if test -f "file.txt"; then
+    echo "File exists"
+fi
+
+# 或者使用方括号
+if [ -f "file.txt" ]; then
+    echo "File exists"
+fi
+
+10. 包管理相关命令
+（根据不同的 Linux 发行版，使用不同的包管理器）
+
+10.1 Debian/Ubuntu 系列（使用 apt）
+示例：
+sudo apt update                        # 更新软件包列表
+sudo apt upgrade                       # 升级已安装的软件包
+sudo apt install package_name          # 安装软件包
+sudo apt remove package_name           # 删除软件包
+
+10.2 Red Hat/CentOS 系列（使用 yum 或 dnf）
+示例：
+sudo yum update                        # 更新软件包列表并升级
+sudo yum install package_name          # 安装软件包
+sudo yum remove package_name           # 删除软件包
+
+# 使用 dnf（适用于较新的系统）
+sudo dnf update
+sudo dnf install package_name
+sudo dnf remove package_name
+
+10.3 Arch Linux 系列（使用 pacman）
+示例：
+sudo pacman -Syu                       # 更新系统和软件包
+sudo pacman -S package_name            # 安装软件包
+sudo pacman -R package_name            # 删除软件包
+
+11. 其他工具命令
+11.1 sort（排序文本）
+用途：对文本文件的行进行排序。
+示例：
+sort file.txt                          # 按字母顺序排序
+sort -n numbers.txt                    # 按数字排序
+sort -r file.txt                       # 逆序排序
+
+11.2 uniq（去除重复行）
+用途：过滤掉相邻的重复行，通常与 sort 配合使用。
+示例：
+sort file.txt | uniq                     # 去除重复行
+sort file.txt | uniq -c                  # 统计每行出现的次数
+
+11.3 wc（计算字数、行数等）
+用途：统计文件的行数、字数和字符数。
+示例：
+wc file.txt                             # 显示行数、字数和字符数
+wc -l file.txt                          # 仅显示行数
+wc -w file.txt                          # 仅显示字数
+wc -c file.txt                          # 仅显示字符数
+
+11.4 diff（比较文件差异）
+用途：比较两个文件的不同之处。
+示例：
+diff file1.txt file2.txt                 # 显示文件差异
+diff -u file1.txt file2.txt              # 统一格式显示差异
+
+11.5 chmod（修改文件权限）
+用途：更改文件或目录的访问权限。
+示例：
+chmod 755 script.sh                       # 设置文件权限为 rwxr-xr-x
+chmod u+x script.sh                       # 为文件所有者添加执行权限
