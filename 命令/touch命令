@@ -1,0 +1,5 @@
+touch 是 Shell 中的一个命令，主要用于 创建空文件 或 更新文件的时间戳。
+1.基本语法：touch [选项] 文件名
+2.创建空文件 ：touch myfile.txt
+3.同时创建多个文件：touch file1.txt file2.txt file3.txt
+4.更新文件的修改时间：touch existingfile.txt：如果 existingfile.txt 已经存在，touch 会更新这个文件的修改时间为当前时间，而不会修改文件内容。
