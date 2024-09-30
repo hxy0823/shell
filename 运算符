@@ -1,0 +1,10 @@
+Shell 运算符主要分为以下几类：
+算术运算符（Arithmetic Operators）
+比较运算符（Comparison/Relational Operators）
+逻辑运算符（Logical Operators）
+字符串运算符（String Operators）
+文件测试运算符（File Test Operators）
+赋值运算符（Assignment Operators）
+其他运算符（Miscellaneous Operators）
+
+1.1算术运算符
