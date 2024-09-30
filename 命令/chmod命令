@@ -1,0 +1,26 @@
+什么是chmod命令：chmod 是一个用于更改文件或目录权限的命令
+
+1.查找文件的权限：使用ls命令：ls -l file.txt
+2.一共有三种权限：
+读（Read，r）：查看文件内容或列出目录内容。
+写（Write，w）：修改文件内容或添加/删除目录中的文件。
+执行（Execute，x）：执行文件（如果是脚本或可执行程序）或进入目录。
+3.赋予权限的指令：
+chomd +x hello.sh
+4.有时会根据用户的不同赋权的方式也不同
+所有者（User，u）：文件的拥有者。
+所属组（Group，g）：与文件所有者属于同一组的用户。
+其他用户（Others，o）：系统上其他所有用户。
+
+例子；
+给所有者添加执行权限
+chmod u+x file.sh
+  
+移除组的写权限
+chmod g-w file.txt
+  
+设置其他用户只读权限
+chmod o=r file.txt
+  
+给所有用户添加读权限
+chmod a+r file.txt
