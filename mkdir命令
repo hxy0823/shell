@@ -1,0 +1,10 @@
+mkdir 是一个用于 创建目录 的命令，通常用于 Linux、macOS 以及其他 Unix-like 操作系统。mkdir 的全称是 "make directory"
+
+基本语法
+mkdir [选项] 目录名
+常见用法和示例
+1.mkdir myfolder：创建一个myfolder文件夹
+2.mkdir /home/user/documents/myfolder：/home/user/documents/ 路径下创建一个名为 myfolder 的目录。
+3.mkdir -p /home/user/documents/project/code：这条命令会一次性创建 /home/user/documents/project/code 目录，即使其中的父级目录 project 不存在，mkdir -p 也会创建它。
+
+
