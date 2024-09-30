@@ -1,0 +1,179 @@
+1.系统预定义的变量：可以提供关于系统、Shell环境以及脚本执行状态的信息。
+
+1.1常见的系统预定义变量
+$HOME：当前用户的主目录路径。
+$USER：当前登录的用户名。
+$PATH：可执行文件的搜索路径列表。
+$PWD：当前工作目录（Print Working Directory）。
+$SHELL：当前Shell的路径。
+$RANDOM：生成一个0到32767之间的随机数。
+$HOSTNAME：主机名。
+$UID：当前用户的用户ID。
+$OLDPWD：前一个工作目录。
+$IFS：内部字段分隔符（Internal Field Separator），默认是空格、制表符和换行符。
+$PS1：命令提示符的样式。
+$?：上一个命令的退出状态，0表示成功，非0表示失败。
+$$：当前Shell进程的PID（Process ID）。
+
+1.2位置参数变量和特殊变量
+$0：当前脚本的名称。
+$1 - $9：传递给脚本或函数的参数，分别表示第1到第9个参数。
+$#：传递给脚本或函数的参数个数。
+$@：传递给脚本或函数的所有参数，作为独立的字符串列表。
+$*：传递给脚本或函数的所有参数，作为一个整体的字符串。
+
+1.3使用系统预定义变量的示例
+#!/bin/bash
+echo "当前用户：$USER"
+echo "主目录：$HOME"
+echo "Shell版本：$BASH_VERSION"
+echo "脚本名称：$0"
+echo "第一个参数：$1"
+echo "参数个数：$#"
+echo "所有参数：$@"
+echo "当前工作目录：$PWD"
+echo "上一个命令的退出状态：$?"
+echo "当前Shell进程的PID：$$"
+假设将上述脚本保存为info.sh，并运行：
+
+
+./info.sh arg1 arg2：这里的arg1和arg2作为参数传递给脚本并在脚本中使用的
+输出可能是：
+当前用户：your_username
+主目录：/home/your_username
+Shell版本：5.0.17(1)-release
+脚本名称：./info.sh
+第一个参数：arg1
+参数个数：2
+所有参数：arg1 arg2
+当前工作目录：/home/your_username
+上一个命令的退出状态：0
+当前Shell进程的PID：12345
+
+
+2.自定义变量：是由用户在Shell脚本或命令行中定义的变量。它们可以存储字符串、数字等数据，以便在脚本中重复使用。
+
+定义自定义变量
+语法：变量名=值
+注意：等号两边不能有空格。
+变量名规则：
+只能包含字母、数字和下划线。
+不能以数字开头。
+区分大小写。
+示例
+bash
+复制代码
+name="Alice"
+age=30
+greeting="Hello, World!"
+使用自定义变量
+引用变量时，需要在变量名前加上$，如$变量名。
+为了避免歧义，建议使用花括号${变量名}。
+示例
+bash
+复制代码
+echo "我的名字是$name，今年${age}岁。"
+修改变量的值
+bash
+复制代码
+count=1
+count=$((count + 1))
+echo "计数值是：$count"  # 输出：计数值是：2
+环境变量与局部变量
+局部变量：在脚本或当前Shell会话中定义的变量，只在当前环境中有效。
+环境变量：使用export命令导出的变量，可以在子Shell或子进程中访问。
+示例
+bash
+复制代码
+#!/bin/bash
+myvar="Hello"
+export myvar  # 导出为环境变量
+
+# 在子Shell中访问myvar
+bash -c 'echo "子Shell中的myvar是：$myvar"'
+输出：
+
+复制代码
+子Shell中的myvar是：Hello
+只读变量
+使用readonly命令，可以将变量设置为只读，防止其被修改。
+
+bash
+复制代码
+readonly pi=3.1415
+pi=3.14  # 这将导致错误：pi: readonly variable
+示例：综合使用系统预定义变量和自定义变量
+bash
+复制代码
+#!/bin/bash
+# 获取当前时间
+current_time=$(date +"%Y-%m-%d %H:%M:%S")
+
+# 自定义变量
+user_name=$USER
+host_name=$HOSTNAME
+
+echo "您好，$user_name！欢迎登录$host_name。"
+echo "当前时间是：$current_time"
+运行结果可能是：
+
+复制代码
+您好，your_username！欢迎登录your_hostname。
+当前时间是：2023-10-12 14:30:00
+练习
+练习1
+任务：编写一个脚本，提示用户输入一个文件名，然后显示该文件的详细信息，包括：
+
+文件是否存在。
+是否为普通文件还是目录。
+文件的权限。
+参考答案
+bash
+复制代码
+#!/bin/bash
+read -p "请输入文件名：" filename
+if [ -e "$filename" ]; then
+  echo "文件$filename存在。"
+  if [ -f "$filename" ]; then
+    echo "$filename是一个普通文件。"
+  elif [ -d "$filename" ]; then
+    echo "$filename是一个目录。"
+  else
+    echo "$filename是其他类型的文件。"
+  fi
+  echo "文件权限是：$(ls -l "$filename" | cut -d ' ' -f 1)"
+else
+  echo "文件$filename不存在。"
+fi
+练习2
+任务：编写一个脚本，计算并输出从命令行传入的两个数字之和。
+
+参考答案
+bash
+复制代码
+#!/bin/bash
+if [ $# -ne 2 ]; then
+  echo "请提供两个数字作为参数。"
+  exit 1
+fi
+num1=$1
+num2=$2
+sum=$((num1 + num2))
+echo "$num1 + $num2 = $sum"
+运行示例：
+
+bash
+复制代码
+./sum.sh 5 10
+输出：
+
+复制代码
+5 + 10 = 15
+总结
+系统预定义变量：由Shell和系统预先定义，提供系统和环境信息。
+自定义变量：由用户定义，用于存储和传递数据。
+变量使用：通过$变量名引用，注意变量名的合法性和作用域。
+环境变量：使用export命令导出，可在子Shell中访问。
+通过练习和实践，您将更加熟悉Shell中的变量操作。如果您对变量的高级用法（如数组、参数扩展等）感兴趣，我们可以继续深入学习。
+
+如果您在学习过程中有任何问题，欢迎随时提问！
