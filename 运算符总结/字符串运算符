@@ -1,0 +1,40 @@
+1.常见字符串运算符
+=	字符串相等	[ "$a" = "$b" ]
+!=	字符串不等于	[ "$a" != "$b" ]
+<	字符串按字典序小于	[[ "$a" < "$b" ]]
+>	字符串按字典序大于	[[ "$a" > "$b" ]]
+-z	字符串长度为零	[ -z "$a" ]
+-n	字符串长度非零	[ -n "$a" ]
+--------------
+2.举例
+#!/bin/bash
+
+str1="apple"
+str2="banana"
+str3="apple"
+
+# 字符串相等
+if [ "$str1" = "$str3" ]; then
+    echo "str1 等于 str3"
+fi
+
+# 字符串不等
+if [ "$str1" != "$str2" ]; then
+    echo "str1 不等于 str2"
+fi
+
+# 字符串长度为零
+empty=""
+if [ -z "$empty" ]; then
+    echo "字符串为空"
+fi
+
+# 字符串长度非零
+if [ -n "$str1" ]; then
+    echo "字符串不为空"
+fi
+
+# 字典序比较
+if [[ "$str1" < "$str2" ]]; then
+    echo "$str1 在字典序中小于 $str2"
+fi
