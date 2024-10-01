@@ -25,4 +25,25 @@ fi
 if [[ condition1 || condition2 ]]; then
     # 执行语句
 fi
+--------------------
+举例：
+#!/bin/bash
 
+a=10
+b=20
+c=30
+
+# 逻辑与
+if [ $a -lt $b ] && [ $b -lt $c ]; then
+    echo "$a 小于 $b 且 $b 小于 $c"
+fi
+
+# 逻辑或
+if [ $a -gt $b ] || [ $b -lt $c ]; then
+    echo "要么 $a 大于 $b，要么 $b 小于 $c"
+fi
+
+# 逻辑非
+if ! [ -f "/path/to/nonexistent_file" ]; then
+    echo "文件不存在"
+fi
