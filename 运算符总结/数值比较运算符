@@ -1,0 +1,42 @@
+数值比较运算符
+-eq	等于	[ $a -eq $b ]
+-ne	不等于	[ $a -ne $b ]
+-gt	大于	[ $a -gt $b ]
+-lt	小于	[ $a -lt $b ]
+-ge	大于或等于	[ $a -ge $b ]
+-le	小于或等于	[ $a -le $b ]
+--------举例
+#!/bin/bash
+
+a=10
+b=20
+
+# 数值比较
+if [ $a -lt $b ]; then
+    echo "$a 小于 $b"
+fi
+
+if [ $a -ne $b ]; then
+    echo "$a 不等于 $b"
+fi
+
+# 字符串比较
+str1="hello"
+str2="world"
+
+if [ "$str1" != "$str2" ]; then
+    echo "字符串不相等"
+fi
+
+# 文件比较
+file="/etc/passwd"
+
+if [ -f "$file" ]; then
+    echo "$file 是一个普通文件"
+fi
+
+if [ -r "$file" ]; then
+    echo "$file 可读"
+fi
+
+
