@@ -1,0 +1,28 @@
+辑运算符的语法：&&、||
+使用[]括号
+if [ condition1 ] && [ condition2 ]; then
+    # 执行语句
+fi
+
+if [ condition1 ] || [ condition2 ]; then
+    # 执行语句
+fi
+-------
+使用双圆括号 (( )) 和逻辑运算符
+if (( condition1 )) && (( condition2 )); then
+    # 执行语句
+fi
+
+if (( condition1 )) || (( condition2 )); then
+    # 执行语句
+fi
+------
+使用双中括号 [[ ]] 和逻辑运算符
+if [[ condition1 && condition2 ]]; then
+    # 执行语句
+fi
+
+if [[ condition1 || condition2 ]]; then
+    # 执行语句
+fi
+
