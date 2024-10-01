@@ -1,0 +1,24 @@
+1. if 语句
+基本语法：
+if [ 条件 ]
+then
+    # 条件为真时执行的命令
+elif [ 另一个条件 ]
+then
+    # 第二个条件为真时执行的命令
+else
+    # 所有条件都不满足时执行的命令
+fi
+------
+举例
+#!/bin/bash
+
+read -p "请输入一个数字: " num
+
+if [ "$num" -gt 0 ]; then
+    echo "您输入的是正数。"
+elif [ "$num" -lt 0 ]; then
+    echo "您输入的是负数。"
+else
+    echo "您输入的是零。"
+fi
